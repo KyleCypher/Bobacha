@@ -1,180 +1,206 @@
-bg = new BackgroundLayer
-	backgroundColor: "skyblue"
+# Define and set custom device
+Framer.Device.customize
+	screenWidth: 1080
+	screenHeight: 1920
+	devicePixelRatio: 1
 flow = new FlowComponent
-flow.showNext(HomePage)
+# Import file "logo-home-static"
+_ = Framer.Importer.load("imported/logo-home-static@1x", scale: 1)
+_.Logo.opacity = 0
+_.Logo.scale = 0
+_.Logo.y = 0
 
-HomePage.onSwipeLeft (event, layer) ->
-	flow.showNext(Menu)
-	logo.Logo.animate("menu")
-	LogoOval.animate("menu")
-	MO1.animate("menu")
-	MO2.animate("menu")
-	MO3.animate("menu")
-	MO4.animate("menu")
-	MO5.animate("menu")
-	MO6.animate("menu")
-	swipeLeftHint.destroy()
-Menu.onSwipeRight (event, layer) ->
+# Set up FlowComponent
+
+homescreenColorFilter.center()
+
+_.Logo.states.homepage =
+	opacity: 1
+	scale: 1
+	y: Align.center
+	isHome: true
+	animationOptions:
+		curve: Spring
+		time: 1
+		delay: 1
+_.Logo.states.homepageFAST =
+	opacity: 1
+	scale: 1
+	y: Align.center
+	isHome: true
+	animationOptions:
+		curve: Spring
+		time: 1
+		delay: 0
+				
+_.Logo.states.menupage =
+	opacity: 1
+	x: Align.center
+	isHome: false
+	y: -77
+	scale: 0.3
+	animationOptions:
+		curve: Spring
+		time: 1
+
+
+homescreenColorFilter.states.homepage =
+	x:-4000
+	animationOptions:
+		curve: Bezier
+		time: 1
+		delay: 3
+
+homeMenuText = new TextLayer
+	text: "MENU"
+	fontSize: 64
+	fontFamily: "raleway"
+	fontWeight: 600
+	color: "white"
+	height: 71
+	parent: menuTile
+	x:Align.center(-20)
+	y:Align.center
+	
+homeMenuText = new TextLayer
+	text: "CONTACT & HOURS"
+	fontSize: 64
+	fontFamily: "raleway"
+	fontWeight: 600
+	color: "white"
+	height: 71
+	parent: contactTile
+	x:Align.center(20)
+	y:Align.center()
+
+
+toppingsSection.states.menupage =
+	x: Align.center
+	animationOptions:
+		curve: Bezier
+		time: 0.7
+
+toppingsSection.states.homepage =
+x: -toppingsSection.width
+y: 633
+animationOptions:
+	curve: Bezier
+	time: 0
+	delay: 0.5
+
+btSection.states.menupage =
+	x: Align.center
+	animationOptions:
+		curve: Bezier
+		time: 0.5
+
+btSection.states.homepage =
+x: -btSection.width
+animationOptions:
+	curve: Bezier
+	time: 0
+	delay: 0.5
+
+btSmoothiesSection.states.menupage =
+	x: Align.center
+	animationOptions:
+		curve: Bezier
+		time: 0.6
+
+btSmoothiesSection.states.homepage =
+x: -btSmoothiesSection.width
+animationOptions:
+	curve: Bezier
+	time: 0
+	delay: 0.5
+
+ftmSection.states.menupage =
+	x: Align.center
+	animationOptions:
+		curve: Bezier
+		time: 0.6
+
+ftmSection.states.homepage =
+x: ftmSection.width
+animationOptions:
+	curve: Bezier
+	time: 0
+	delay: 0.5
+
+ftmText = new TextLayer
+	text: "Flavors of The Month"
+	color: "#7755CC"
+	x: Align.center(-70)
+	y: Align.center
+	fontSize: 48
+	fontWeight: 600
+	parent: ftmTarea
+
+btText = new TextLayer
+	text: "Bubble Teas"
+	color: "#FFEE66"
+	x: Align.center(20)
+	y: Align.center
+	fontSize: 48
+	fontWeight: 600
+	parent: btTarea
+
+btSText = new TextLayer
+	text: "Bubble Teas Smoothies"
+	color: "#FFEE66"
+	x: Align.center(20)
+	y: Align.center
+	fontSize: 48
+	fontWeight: 600
+	parent: btSmoothiesTarea
+
+btText = new TextLayer
+	text: "Bubble Teas"
+	color: "#FFEE66"
+	x: Align.center(20)
+	y: Align.center
+	fontSize: 48
+	fontWeight: 600
+	parent: btTarea
+
+btSText = new TextLayer
+	text: "Bubble Teas Smoothies"
+	color: "#FFEE66"
+	x: Align.center(20)
+	y: Align.center
+	fontSize: 48
+	fontWeight: 600
+	parent: btSmoothiesTarea
+
+
+_.Logo.animate("homepage")
+homescreenColorFilter.animate("homepage")
+toppingsSection.animate("homepage")
+btSection.animate("homepage")
+btSmoothiesSection.animate("homepage")
+ftmSection.animate("homepage")
+
+flow.showNext(homepage)
+
+# Switch on click
+menuTile.onClick ->
+	flow.showNext(menupage)
+	_.Logo.animate("menupage")
+	toppingsSection.animate("menupage")
+	btSection.animate("menupage")
+	btSmoothiesSection.animate("menupage")
+	ftmSection.animate("menupage")
+
+contactTile.onClick ->
 	flow.showPrevious()
-	logo.Logo.animate("homescreen")
-	LogoOval.animate("homescreen")
-	MO1.animate("homescreen")
-	MO2.animate("homescreen")
-	MO3.animate("homescreen")
-	MO4.animate("homescreen")
-	MO5.animate("homescreen")
-	MO6.animate("homescreen")
 
-LogoOval = new Layer
-	borderRadius: 100
-	midY:Screen.height/2
-	midX:Screen.width/2
-	scale:0
-	backgroundColor: "#1199EE"
-logo = Framer.Importer.load("imported/logo-home-static@1x")
-logo.Logo.opacity = 0;
-logo.scale = 0.3
-logo.Logo.midX = Screen.width/2
-logo.Logo.midY = Screen.height/2
-
-logo.Logo.states.homescreen =
-	midY:Screen.height/2
-	midX:Screen.width/2
-	scale: 0.3
-	opacity: 1
-	animationOptions:
-		time: 1
-		curve: Spring
-
-logo.Logo.states.homescreen =
-	midY:Screen.height/2
-	midX:Screen.width/2
-	scale: 0.3
-	opacity: 1
-	animationOptions:
-		time: 1
-		curve: Spring
-logo.Logo.animate("homescreen")
+_.Logo.onClick (event, layer) ->
+	if (_.Logo.isHome == false)
+		flow.showPrevious(homepage)
+		_.Logo.animate("homepageFAST")
+		toppingsSection.animate("homepage")
+		btSection.animate("homepage")
+		btSmoothiesSection.animate("homepage")
+		ftmSection.animate("homepage")
 
 
-logo.Logo.states.menu =
-	midY:50
-	midX:50
-	scale: 0.1
-	opacity: 1
-	animationOptions:
-		time: 1
-		curve: Spring
-
-swipeLeftHint.animate
-	opacity: 0.2
-	options: 
-		delay: 2
-		curve: Spring(mass: 0.01)
-		
-
-LogoOval.states.menu = 
-	scale: 1.2
-	midX: 0
-	midY: 0
-	animationOptions:
-		time: 1
-		curve: Spring
-
-LogoOval.states.homescreen = 
-	scale: 0
-	midY:Screen.height/2
-	midX:Screen.width/2
-	animationOptions:
-		time: 1
-		curve: Spring
-MO1.scale=0
-MO2.scale=0
-MO3.scale=0
-MO4.scale=0
-MO5.scale=0
-MO6.scale=0
-MO1.states.menu = 
-	scale:1
-	opacity: 1
-	animationOptions:
-		time: 1
-		curve: Spring
-MO2.states.menu = 
-	scale:1
-	opacity: 1
-	animationOptions:
-		time: 2
-		curve: Spring
-MO3.states.menu = 
-	scale:1
-	opacity: 1
-	animationOptions:
-		time: 3
-		curve: Spring
-MO4.states.menu = 
-	scale:1
-	opacity: 1
-	animationOptions:
-		time: 4
-		curve: Spring
-MO5.states.menu = 
-	scale:1
-	opacity: 1
-	animationOptions:
-		time: 5
-		curve: Spring
-MO6.states.menu = 
-	scale:1
-	opacity: 1
-	animationOptions:
-		time: 6
-		curve: Spring
-
-MO1.states.homescreen = 
-	scale:0
-	opacity: 0
-	animationOptions:
-		time: 1
-		curve: Spring
-MO2.states.homescreen = 
-	scale:0
-	opacity: 0
-	animationOptions:
-		time: 1
-		curve: Spring
-MO3.states.homescreen = 
-	scale:0
-	opacity: 0
-	animationOptions:
-		time: 1
-		curve: Spring
-MO4.states.homescreen = 
-	scale:0
-	opacity: 0
-	animationOptions:
-		time: 1
-		curve: Spring
-MO5.states.homescreen = 
-	scale:0
-	opacity: 0
-	animationOptions:
-		time: 1
-		curve: Spring
-MO6.states.homescreen = 
-	scale:0
-	opacity: 0
-	animationOptions:
-		time: 1
-		curve: Spring
-
-LogoOval.onTap (event, layer) ->
-	flow.showPrevious(HomePage)
-	logo.Logo.animate("homescreen")
-	LogoOval.animate("homescreen")
-	MO1.animate("homescreen")
-	MO2.animate("homescreen")
-	MO3.animate("homescreen")
-	MO4.animate("homescreen")
-	MO5.animate("homescreen")
-	MO6.animate("homescreen")

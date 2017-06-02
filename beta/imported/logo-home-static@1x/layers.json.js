@@ -6,15 +6,15 @@ window.__imported__["logo-home-static@1x/layers.json.js"] = [
 		"layerFrame": {
 			"x": 0,
 			"y": 0,
-			"width": 806,
-			"height": 449
+			"width": 1080,
+			"height": 1920
 		},
 		"maskFrame": null,
 		"image": {
 			"path": "images/Logo.png",
 			"frame": {
-				"x": 0,
-				"y": 0,
+				"x": 137,
+				"y": 735,
 				"width": 788,
 				"height": 447
 			}
@@ -23,6 +23,6 @@ window.__imported__["logo-home-static@1x/layers.json.js"] = [
 		"children": [
 			
 		],
-		"modification": "1894388424"
+		"modification": "922897700"
 	}
 ]
