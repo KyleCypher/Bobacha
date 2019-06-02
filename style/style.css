@@ -6341,7 +6341,9 @@ button.close {
   clear: both;
 }
 .center-block {
-  display: block;
+  display: block ;
+    height: 60%;
+    width: 60%;
   margin-left: auto;
   margin-right: auto;
 }
