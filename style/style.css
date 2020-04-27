@@ -19,6 +19,38 @@ html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
+button {
+	background-color: rgba(83,110,59,1.00);
+	border: none;
+	color: #ffffff;
+	padding: 15px 32px;
+	text-decoration: none;
+	font-size: 32px;
+	border-radius: 6px;
+	width: 25%;
+	transition-duration: 0.4s;
+}
+button:hover{
+	background-color: #4CAF50;
+	color: white;
+	text-decoration: none;
+}
+a:link {
+	color: white;
+	text-decoration: none;
+}
+a:visited {
+	color: white;
+	text-decoration: none;
+}
+a:hover {
+	color: aliceblue;
+	text-decoration: none;
+}
+a:active {
+	color: white;
+	text-decoration: none;
+}
 .imageContain {
   background-size: cover;
   background-repeat: no-repeat;
